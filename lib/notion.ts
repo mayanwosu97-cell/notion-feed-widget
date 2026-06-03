@@ -1,0 +1,91 @@
+import { Client } from "@notionhq/client";
+
+const apiKey = process.env.NOTION_API_KEY;
+const dataSourceId = process.env.NOTION_DATABASE_ID || "";
+
+// Type for a post from Notion
+export interface InstagramPost {
+  id: string;
+  title: string;
+  caption?: string;
+  imageUrl?: string;
+}
+
+// Fetch all posts from the Notion database using dataSources API
+export async function getInstagramPosts(): Promise<InstagramPost[]> {
+  try {
+    console.log("Data Source ID:", dataSourceId);
+    
+    const notion = new Client({
+      auth: apiKey,
+    });
+
+    // Use dataSources.query() for the new Notion API
+    const response = await notion.dataSources.query({
+      data_source_id: dataSourceId,
+    });
+
+    console.log("Notion response:", response);
+
+    // Transform Notion data source results into our InstagramPost format
+    const posts: InstagramPost[] = response.results.map((item: any, idx: number) => {
+      // Handle different response formats
+      let title = "Untitled";
+      let caption = undefined;
+      let imageUrl = undefined;
+
+      // If the item has properties (traditional database format)
+      if (item.properties) {
+        const properties = item.properties;
+        
+        // Log first item to see structure
+        if (idx === 0) {
+          console.log("First item properties:", JSON.stringify(properties, null, 2).slice(0, 500));
+        }
+
+        // Try to extract title from common column names
+        for (const [key, value] of Object.entries(properties)) {
+          const propValue = value as any;
+          
+          // Check if this property contains a title
+          if (propValue?.title?.[0]?.plain_text) {
+            title = propValue.title[0].plain_text;
+            break;
+          }
+        }
+
+        // If still untitled, try to get it from the URL (backup)
+        if (title === "Untitled" && item.url) {
+          const urlParts = item.url.split('/').pop()?.split('-');
+          if (urlParts && urlParts.length > 0) {
+            title = urlParts.slice(0, -1).join(' ');
+          }
+        }
+
+        // Extract caption from Caption column if it exists
+        if (properties.Caption?.rich_text?.[0]?.plain_text) {
+          caption = properties.Caption.rich_text[0].plain_text;
+        }
+
+        // Extract image URL if it exists
+        if (properties.Image?.files?.[0]?.file?.url) {
+          imageUrl = properties.Image.files[0].file.url;
+        } else if (properties.Image?.files?.[0]?.external?.url) {
+          imageUrl = properties.Image.files[0].external.url;
+        }
+      }
+
+      return {
+        id: item.id || Math.random().toString(),
+        title,
+        caption,
+        imageUrl,
+      };
+    });
+
+    return posts;
+  } catch (error) {
+    console.error("Error fetching posts from Notion:", error);
+    return [];
+  }
+}

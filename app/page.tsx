@@ -54,13 +54,6 @@ export default async function Home() {
       className="block w-full h-full object-cover"
     />
 
-    {post.publishDate && (
- <div className="absolute bottom-1 left-1 right-1">
-  <div className="bg-black/70 text-white text-[18px] px-2 py-1 rounded text-center font-medium">
-    {post.publishDate ? new Date(post.publishDate).toLocaleDateString() : ""}
-  </div>
-</div>
-    )}
   </>
 ) : (
                     <div className="w-full h-full flex items-center justify-center p-4 text-center">
@@ -69,6 +62,14 @@ export default async function Home() {
                       </p>
                     </div>
                   )}
+                  
+                   {post.publishDate && (
+ <div className="absolute bottom-1 left-1 right-1">
+  <div className="bg-black/70 text-white text-[18px] px-2 py-1 rounded text-center font-medium">
+    {new Date(post.publishDate).toLocaleDateString()}
+  </div>
+</div>
+    )}
                 </div>
               ))}
             </div>

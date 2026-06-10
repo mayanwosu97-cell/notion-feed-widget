@@ -1,5 +1,5 @@
 import { getInstagramPosts } from "@/lib/notion";
-
+export const dynamic = "force-dynamic";
 export default async function Home() {
   const posts = await getInstagramPosts();
 
@@ -7,10 +7,10 @@ export default async function Home() {
     <div className="min-h-screen bg-white dark:bg-black">
       <div className="flex flex-col items-center justify-center py-4 px-2">
         <h1 className="text-2xl font-bold text-center text-black dark:text-white mb-2">
-          Instagram Feed Planner
+          PDF CHANNEL GRID PLANNER
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-400 text-center">
-          Plan your feed before it goes live
+          UPCOMING FEED
         </p>
         <p className="text-sm text-gray-500 dark:text-gray-500 mt-4">
           {posts.length} posts in your feed

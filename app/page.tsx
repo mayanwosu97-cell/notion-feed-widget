@@ -55,11 +55,11 @@ export default async function Home() {
     />
 
     {post.publishDate && (
-      <div className="absolute bottom-1 left-1 right-1">
-        <div className="bg-black/70 text-white text-[18px] px-2 py-1 rounded text-center font-medium"
-          {new Date(post.publishDate).toLocaleDateString()}
-        </div>
-      </div>
+ <div className="absolute bottom-1 left-1 right-1">
+  <div className="bg-black/70 text-white text-[18px] px-2 py-1 rounded text-center font-medium">
+    {post.publishDate ? new Date(post.publishDate).toLocaleDateString() : ""}
+  </div>
+</div>
     )}
   </>
 ) : (

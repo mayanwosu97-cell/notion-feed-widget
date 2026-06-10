@@ -3,32 +3,37 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   const posts = await getInstagramPosts();
 
-  return (
-    <div className="min-h-screen bg-white dark:bg-black">
-      <div className="flex flex-col items-center justify-center py-4 px-2">
-        <h1 className="text-2xl font-bold text-center text-black dark:text-white mb-2">
-          PDF CHANNEL GRID PLANNER
-        </h1>
-        <p className="text-xs text-gray-500 mb-2">
-  Last Updated: {new Date().toLocaleString()}
-</p>
-        <a
-  href="/"
-  className="mb-4 inline-block px-3 py-1 text-xs rounded bg-gray-800 hover:bg-gray-700 text-white"
->
-  Refresh
-</a>
-        <p className="text-xl text-gray-600 dark:text-gray-400 text-center">
-          UPCOMING FEED
-        </p>
-        <p className="text-sm text-gray-500 dark:text-gray-500 mt-4">
-          {posts.length} posts in your feed
-        </p>
+ return (
+  <div className="min-h-screen bg-white dark:bg-black">
+    <div className="flex flex-col items-center justify-center py-4 px-2">
+      <h1 className="text-2xl font-bold text-center text-black dark:text-white mb-2">
+        PDF CHANNEL GRID PLANNER
+      </h1>
+
+      <div className="w-full flex justify-end mb-2">
+        <div className="flex items-center gap-2">
+          <p className="text-[10px] text-gray-500">
+            {new Date().toLocaleString()}
+          </p>
+
+          <a
+            href="/"
+            className="px-2 py-1 text-[10px] rounded bg-gray-800 hover:bg-gray-700 text-white"
+          >
+            Refresh
+          </a>
+        </div>
       </div>
 
-      <div className="w-full px-2 pb-4">
-        <div className="w-full max-w-none">
-          {posts.length === 0 ? (
+      <p className="text-xl text-gray-600 dark:text-gray-400 text-center">
+        UPCOMING FEED
+      </p>
+
+      <p className="text-sm text-gray-500 dark:text-gray-500 mt-4">
+        {posts.length} posts in your feed
+      </p>
+    </div>
+    
             <div className="text-center py-16">
               <p className="text-gray-500 dark:text-gray-400">
                 No posts yet.

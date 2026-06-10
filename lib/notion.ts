@@ -66,15 +66,16 @@ export async function getInstagramPosts(): Promise<InstagramPost[]> {
         if (properties.Caption?.rich_text?.[0]?.plain_text) {
           caption = properties.Caption.rich_text[0].plain_text;
         }
-
-        // Extract image URL if it exists
-        if (properties.Image?.files?.[0]?.file?.url) {
-          imageUrl = properties.Image.files[0].file.url;
-        } else if (properties.Image?.files?.[0]?.external?.url) {
-          imageUrl = properties.Image.files[0].external.url;
-        }
-      }
-
+console.log("THUMBNAIL PROPERTY:", JSON.stringify(properties.Thumbnail, null, 2));
+        // Extract image URL from Thumbnail URL property
+if (
+  properties.Thumbnail?.url &&
+  properties.Thumbnail.url.startsWith("http")
+) {
+  imageUrl = properties.Thumbnail.url;
+}
+      
+}
       return {
         id: item.id || Math.random().toString(),
         title,

@@ -56,7 +56,7 @@ export default async function Home() {
 
     {post.publishDate && (
       <div className="absolute bottom-1 left-1 right-1">
-        <div className="bg-black/70 text-white text-[10px] px-2 py-1 rounded text-center">
+        <div className="bg-black/70 text-white text-sm px-2 py-1 rounded text-center font-medium"
           {new Date(post.publishDate).toLocaleDateString()}
         </div>
       </div>

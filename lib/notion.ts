@@ -54,6 +54,7 @@ sorts: [
     direction: "descending",
   },
 ],
+});
     console.log("Notion response:", response);
 
     // Transform Notion data source results into our InstagramPost format

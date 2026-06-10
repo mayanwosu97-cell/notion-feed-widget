@@ -9,6 +9,7 @@ export interface InstagramPost {
   title: string;
   caption?: string;
   imageUrl?: string;
+    publishDate?: string;
 }
 
 // Fetch all posts from the Notion database using dataSources API

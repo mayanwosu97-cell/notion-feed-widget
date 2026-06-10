@@ -26,7 +26,7 @@ export async function getInstagramPosts(): Promise<InstagramPost[]> {
   sorts: [
     {
       property: "Publish Date",
-      direction: "ascending",
+      direction: "descending",
     },
   ],
 });

@@ -27,29 +27,47 @@ export async function getInstagramPosts(): Promise<InstagramPost[]> {
 
   filter: {
 
-    property: "Content Type",
-
-    multi_select: {
-
-      does_not_contain: "Story",
-
-    },
-
-  },
-
-  sorts: [
+  or: [
 
     {
 
-      property: "Publish Date",
+      property: "Content Type",
 
-      direction: "descending",
+      multi_select: {
+
+        contains: "Feed Post",
+
+      },
+
+    },
+
+    {
+
+      property: "Content Type",
+
+      multi_select: {
+
+        contains: "Carousel",
+
+      },
+
+    },
+
+    {
+
+      property: "Content Type",
+
+      multi_select: {
+
+        contains: "Reel",
+
+      },
 
     },
 
   ],
 
-});
+},
 
     console.log("Notion response:", response);
 

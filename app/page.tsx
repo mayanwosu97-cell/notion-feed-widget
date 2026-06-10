@@ -44,15 +44,25 @@ export default async function Home() {
               {posts.map((post) => (
                 <div
                   key={post.id}
-                  className="aspect-square bg-gray-200 dark:bg-gray-800 rounded-lg overflow-hidden"
+                  className="relative aspect-square bg-gray-200 dark:bg-gray-800 rounded-lg overflow-hidden"
                 >
                   {post.imageUrl && post.imageUrl.startsWith("http") ? (
-                    <img
-                      src={post.imageUrl}
-                      alt={post.title}
-                      className="block w-full h-full object-cover"
-                    />
-                  ) : (
+  <>
+    <img
+      src={post.imageUrl}
+      alt={post.title}
+      className="block w-full h-full object-cover"
+    />
+
+    {post.publishDate && (
+      <div className="absolute bottom-1 left-1 right-1">
+        <div className="bg-black/70 text-white text-[10px] px-2 py-1 rounded text-center">
+          {new Date(post.publishDate).toLocaleDateString()}
+        </div>
+      </div>
+    )}
+  </>
+) : (
                     <div className="w-full h-full flex items-center justify-center p-4 text-center">
                       <p className="text-gray-600 dark:text-gray-400 font-medium line-clamp-3">
                         {post.title}

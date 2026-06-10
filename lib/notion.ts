@@ -94,6 +94,9 @@ sorts: [
         if (properties.Caption?.rich_text?.[0]?.plain_text) {
           caption = properties.Caption.rich_text[0].plain_text;
         }
+        if (properties["Publish Date"]?.date?.start) {
+  publishDate = properties["Publish Date"].date.start;
+}
 console.log("THUMBNAIL PROPERTY:", JSON.stringify(properties.Thumbnail, null, 2));
         // Extract image URL from Thumbnail URL property
 if (
@@ -104,12 +107,14 @@ if (
 }
       
 }
+      let publishDate = undefined;
       return {
-        id: item.id || Math.random().toString(),
-        title,
-        caption,
-        imageUrl,
-      };
+  id: item.id || Math.random().toString(),
+  title,
+  caption,
+  imageUrl,
+  publishDate,
+};
     });
 
     return posts;

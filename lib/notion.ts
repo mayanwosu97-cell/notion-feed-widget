@@ -22,13 +22,33 @@ export async function getInstagramPosts(): Promise<InstagramPost[]> {
 
     // Use dataSources.query() for the new Notion API
   const response = await notion.dataSources.query({
+
   data_source_id: dataSourceId,
-  sorts: [
-    {
-      property: "Publish Date",
-      direction: "descending",
+
+  filter: {
+
+    property: "Content Type",
+
+    multi_select: {
+
+      does_not_contain: "Story",
+
     },
+
+  },
+
+  sorts: [
+
+    {
+
+      property: "Publish Date",
+
+      direction: "descending",
+
+    },
+
   ],
+
 });
 
     console.log("Notion response:", response);

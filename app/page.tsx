@@ -9,6 +9,15 @@ export default async function Home() {
         <h1 className="text-2xl font-bold text-center text-black dark:text-white mb-2">
           PDF CHANNEL GRID PLANNER
         </h1>
+        <p className="text-xs text-gray-500 mb-2">
+  Last Updated: {new Date().toLocaleString()}
+</p>
+        <a
+  href="/"
+  className="mb-4 inline-block px-3 py-1 text-xs rounded bg-gray-800 hover:bg-gray-700 text-white"
+>
+  Refresh
+</a>
         <p className="text-xl text-gray-600 dark:text-gray-400 text-center">
           UPCOMING FEED
         </p>

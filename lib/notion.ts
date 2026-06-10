@@ -29,21 +29,19 @@ export async function getInstagramPosts(): Promise<InstagramPost[]> {
   or: [
     {
       property: "Content Type",
-      multi_select: {
-        contains: "Feed Post",
-      },
+      multi_select: { contains: "Feed Post" },
     },
     {
       property: "Content Type",
-      multi_select: {
-        contains: "Carousel",
-      },
+      multi_select: { contains: "Feed Graphic" },
     },
     {
       property: "Content Type",
-      multi_select: {
-        contains: "Reel",
-      },
+      multi_select: { contains: "Carousel" },
+    },
+    {
+      property: "Content Type",
+      multi_select: { contains: "Reel" },
     },
   ],
 },

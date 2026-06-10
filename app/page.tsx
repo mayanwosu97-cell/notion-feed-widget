@@ -32,15 +32,15 @@ export default async function Home() {
       <p className="text-sm text-gray-500 dark:text-gray-500 mt-4">
         {posts.length} posts in your feed
       </p>
+   <div className="w-full px-2 pb-4">
+  {posts.length === 0 ? (
+    <div className="text-center py-16">
+      <p className="text-gray-500 dark:text-gray-400">
+        No posts yet.
+      </p>
     </div>
-    
-            <div className="text-center py-16">
-              <p className="text-gray-500 dark:text-gray-400">
-                No posts yet.
-              </p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-3 gap-1">
+  ) : (
+    <div className="grid grid-cols-3 gap-1">
               {posts.map((post) => (
                 <div
                   key={post.id}

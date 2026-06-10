@@ -5,8 +5,8 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-black">
-      <div className="flex flex-col items-center justify-center py-16 px-4">
-        <h1 className="text-5xl font-bold text-center text-black dark:text-white mb-4">
+      <div className="flex flex-col items-center justify-center py-4 px-2">
+        <h1 className="text-2xl font-bold text-center text-black dark:text-white mb-2">
           Instagram Feed Planner
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-400 text-center">
@@ -17,8 +17,8 @@ export default async function Home() {
         </p>
       </div>
 
-      <div className="flex-1 px-4 pb-16">
-        <div className="max-w-4xl mx-auto">
+      <div className="w-full px-2 pb-4">
+        <div className="w-full max-w-none">
           {posts.length === 0 ? (
             <div className="text-center py-16">
               <p className="text-gray-500 dark:text-gray-400">
@@ -26,7 +26,7 @@ export default async function Home() {
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-1">
               {posts.map((post) => (
                 <div
                   key={post.id}

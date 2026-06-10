@@ -26,49 +26,34 @@ export async function getInstagramPosts(): Promise<InstagramPost[]> {
   data_source_id: dataSourceId,
 
   filter: {
-
   or: [
-
     {
-
       property: "Content Type",
-
       multi_select: {
-
         contains: "Feed Post",
-
       },
-
     },
-
     {
-
       property: "Content Type",
-
       multi_select: {
-
         contains: "Carousel",
-
       },
-
     },
-
     {
-
       property: "Content Type",
-
       multi_select: {
-
         contains: "Reel",
-
       },
-
     },
-
   ],
-
 },
 
+sorts: [
+  {
+    property: "Publish Date",
+    direction: "descending",
+  },
+],
     console.log("Notion response:", response);
 
     // Transform Notion data source results into our InstagramPost format
